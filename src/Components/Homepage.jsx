@@ -4,8 +4,8 @@ const HomePage = () => {
 	return (
 		<>
 			<div className="h-[100%]-16 p-20 flex">
-				<div className="leftSide w-[50%] p-10">
-					<h1 className="text-5xl font-bold text-[#00246B] mb-[10]  ml-7">
+				<div className="leftSide w-[50%] p-10 dark:text-white">
+					<h1 className="text-5xl font-bold text-[#00246B] mb-[10] ml-7 ">
 						HomeMaid
 					</h1>
 					
@@ -22,7 +22,7 @@ const HomePage = () => {
 				</div>
 
 				<div className="rightSide">
-					<img src="output.png" alt="" />
+					<img src="output.png" alt="Maid_Depiction" />
 				</div>
 			</div>
 		</>

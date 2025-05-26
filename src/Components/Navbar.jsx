@@ -1,4 +1,4 @@
-function Navbar({ onAboutClick }) {
+function Navbar({ onAboutClick, onServicesClick }) {
   return (
     <>
       <header className="bg-[#00246B]">
@@ -12,7 +12,7 @@ function Navbar({ onAboutClick }) {
               />
             </div>
 
-            <div className="md:flex md:items-center md:gap-12">
+            <div className="md:flex md:items-center md:gap-12 text-gray-900 dark:text-white">
               <nav aria-label="Global" className="hidden md:block">
                 <ul className="flex items-center gap-6 text-sm">
                   
@@ -42,6 +42,10 @@ function Navbar({ onAboutClick }) {
                     <a
                       className="text-white transition hover:text-white/75 hover:font-bold :text-white"
                       href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onServicesClick) onServicesClick();
+                      }}
                     >
                       Services
                     </a>

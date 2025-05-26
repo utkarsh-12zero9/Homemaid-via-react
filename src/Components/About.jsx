@@ -1,7 +1,7 @@
 function About() {
   return (
     <>
-      <div className="mx-auto h-screen mt-20 max-w-screen-xl p-10">
+      <div className="mx-auto h-screen mt-20 max-w-screen-xl p-5 dark:text-white">
         <h1 className="text-5xl font-bold text-[#00246B] mb-8 mt-20 ml-7">
           About
         </h1>
@@ -17,7 +17,7 @@ function About() {
           Our mission is to empower homes by making maid hiring easy,
           transparent, and trustworthy — all from the comfort of your screen.{" "}
         </p>
-        <section className="ml-7 text-md text-black leading-4 font-semibold">
+        <section className="ml-7 text-md text-black leading-4 font-semibold mb-10">
           <p>✅ Why Choose HomeMaid?</p>
           <br />
           <p>🔒 Background Verified Maids </p>
