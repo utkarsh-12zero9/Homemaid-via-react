@@ -1,5 +1,4 @@
 import React from 'react'
-// import cooking from '../assets/cooking.jpg';
 function Services2(props) {
 
 
@@ -7,7 +6,7 @@ function Services2(props) {
     <>
         <div className='pb-10'>
             <h1 className='text-5xl text-[#00246B] font-bold ml-42 mb-2 mt-8'>Services</h1>
-            <p className=" text-xl font-bold ml-40 text-black">
+            <p className=" text-xl font-bold ml-42 text-black">
                 We offer a wide range of services to meet your needs.
             </p>
             <div className='flex w-[80%] flex-wrap justify-center gap-15 mx-auto mt-10'>
