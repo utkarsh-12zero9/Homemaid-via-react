@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "../ui/Button";
 
 const HomePage = () => {
     return (
@@ -23,7 +23,7 @@ const HomePage = () => {
 
                 <div className="rightSide w-full lg:w-1/2 flex justify-center items-center mt-10 lg:mt-0">
                     <img
-                        src="output.png"
+                        src="../src/assets/icons/FrontMaid.png"
                         alt="Maid_Depiction"
                         className="w-4/5 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl h-auto object-contain"
                     />

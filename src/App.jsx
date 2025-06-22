@@ -1,14 +1,14 @@
 import { useRef } from "react";
-import About from "./Components/About";
-import Navbar from "./Components/Navbar";
-import HomePage from "./Components/Homepage";
-import cooking from "./assets/cooking.jpg";
-import sweeping from "./assets/sweeping.jpg";
-import laundry from "./assets/laundry.jpg";
-import dusting from "./assets/dusting.jpg";
-import dishWashing from "./assets/dishwashing.jpg";
-import grocery from "./assets/grocery.jpg";
-import Services from "./Components/Services";
+import About from "./Components/pages/About";
+import Navbar from "./Components/layout/Navbar";
+import HomePage from "./Components/pages/Homepage";
+import cooking from "./assets/images/cooking.jpg";
+import sweeping from "./assets/images/sweeping.jpg";
+import laundry from "./assets/images/laundry.jpg";
+import dusting from "./assets/images/dusting.jpg";
+import dishWashing from "./assets/images/dishwashing.jpg";
+import grocery from "./assets/images/grocery.jpg";
+import Services from "./Components/pages/Services";
 
 function App() {
 	const aboutRef = useRef(null);
