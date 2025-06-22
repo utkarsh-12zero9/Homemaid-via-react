@@ -3,8 +3,8 @@ function Services(props) {
 	return (
 		<>
 			<div className='pb-10'>
-				<h1 className='text-5xl text-[#00246B] font-bold ml-42 mb-4 mt-8'>Services</h1>
-				<p className=" text-xl font-bold ml-42 text-black">
+				<h1 className='text-5xl text-[#00246B] font-bold ml-41 mb-4 mt-8'>Services</h1>
+				<p className=" text-xl font-bold ml-42 text-black"> 
 					We offer a wide range of services to meet your needs.
 				</p>
 				<div className='flex w-[80%] flex-wrap justify-center gap-15 mx-auto mt-10'>
