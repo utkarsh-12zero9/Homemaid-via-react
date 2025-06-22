@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Routes, Route } from "react-router-dom";
 import About from "./Components/pages/About";
 import Navbar from "./Components/layout/Navbar";
 import HomePage from "./Components/pages/Homepage";
@@ -9,6 +10,7 @@ import dusting from "./assets/images/dusting.jpg";
 import dishWashing from "./assets/images/dishwashing.jpg";
 import grocery from "./assets/images/grocery.jpg";
 import Services from "./Components/pages/Services";
+import Login from "./Components/pages/Login";
 
 function App() {
 	const aboutRef = useRef(null);
@@ -41,14 +43,20 @@ function App() {
 				<Navbar onAboutClick={scrollToAbout} onServicesClick={scrollToServices} />
 			</div>
 			<div className="pt-16 bg-white text-black min-h-screen">
-				<HomePage />
-				<div ref={aboutRef}>
-					<About />
-				</div>
-
-				<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
-					<Services services={services} />
-				</div>
+				<Routes>
+					<Route path="/" element={
+						<>
+							<HomePage />
+							<div ref={aboutRef}>
+								<About />
+							</div>
+							<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
+								<Services services={services} />
+							</div>
+						</>
+					} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
 			</div>
 		</>
 	);

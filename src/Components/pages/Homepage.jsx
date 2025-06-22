@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen px-4 py-10 sm:px-8 lg:px-20 lg:py-20">
@@ -16,7 +19,7 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex gap-4 sm:gap-8 mt-6 sm:mt-10 ml-2 sm:ml-10">
-                        <Button content="Login" />
+                        <Button content="Login" onClick={() => navigate("/login")} />
                         <Button content="Sign Up"/>
                     </div>
                 </div>

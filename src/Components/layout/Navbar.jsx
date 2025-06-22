@@ -60,6 +60,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 											Home
 										</a>
 									</li>
+
 									<li>
 										<a
 											className="text-white transition hover:text-white/75 hover:font-bold"
@@ -72,6 +73,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 											About
 										</a>
 									</li>
+
 									<li>
 										<a
 											className="text-white transition hover:text-white/75 hover:font-bold"
@@ -84,6 +86,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 											Services
 										</a>
 									</li>
+
 									<li>
 										<a
 											className="text-white transition hover:text-white/75 hover:font-bold"
@@ -91,6 +94,9 @@ function Navbar({ onAboutClick, onServicesClick }) {
 										>
 											Contact Us
 										</a>
+									</li>
+									<li>
+										
 									</li>
 								</ul>
 							</nav>
@@ -110,6 +116,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 										Home
 									</a>
 								</li>
+
 								<li>
 									<a
 										className="block w-full transition hover:text-white/75 hover:font-bold"
@@ -123,6 +130,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 										About
 									</a>
 								</li>
+
 								<li>
 									<a
 										className="block w-full transition hover:text-white/75 hover:font-bold"
@@ -136,6 +144,7 @@ function Navbar({ onAboutClick, onServicesClick }) {
 										Services
 									</a>
 								</li>
+
 								<li>
 									<a
 										className="block w-full transition hover:text-white/75 hover:font-bold"
