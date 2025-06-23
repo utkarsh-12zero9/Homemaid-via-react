@@ -15,7 +15,7 @@ function About() {
 					deep sanitization, cooking assistance, or full-time support, we make
 					finding the perfect helper simple and secure. <br />
 					Our mission is to empower homes by making maid hiring easy,
-					transparent, and trustworthy — all from the comfort of your screen.{" "}
+					transparent, and trustworthy. All from the comfort of your screen.{" "}
 				</p>
 				<section className="ml-2 sm:ml-7 text-sm sm:text-md text-black leading-5 font-semibold mb-8 sm:mb-10">
 					<p>✅ Why Choose HomeMaid?</p>
