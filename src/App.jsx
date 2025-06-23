@@ -52,16 +52,7 @@ function App() {
 				<Navbar onAboutClick={scrollToAbout} onServicesClick={scrollToServices} />
 			</div>
 			<div className="pt-16 bg-white text-black min-h-screen">
-<<<<<<< HEAD
-				<HomePage scrollToLogin={scrollToLogin}/>
-				<div ref={aboutRef}>
-					<About />
-				</div>
 
-				<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
-					<Services services={services} />
-				</div>
-=======
 				<Routes>
 					<Route path="/" element={
 						<>
@@ -76,7 +67,7 @@ function App() {
 					} />
 					<Route path="/login" element={<Login />} />
 				</Routes>
->>>>>>> fdfeca52927ecf7863358e7c7e9c62b7826e8ab0
+
 			</div>
 			<div ref={loginRef}><Login/></div>
 			<div><SignUp/></div>
