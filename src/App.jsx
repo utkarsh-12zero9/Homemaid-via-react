@@ -80,8 +80,7 @@ function App() {
 				</Routes>
 
 			</div>
-			<div><Login/></div>
-			<div><SignUp/></div>
+
 		</>
 	);
 }
