@@ -41,12 +41,6 @@ function App() {
 		}
 	};
 
-	const scrollToLogin = () => {
-		if (loginRef.current) {
-		  loginRef.current.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the Login component
-		}
-	};
-
 	return (
 		<>
 			<div className="fixed top-0 left-0 w-full z-50">
@@ -67,11 +61,10 @@ function App() {
 						</>
 					} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<SignUp />} />
 				</Routes>
 
 			</div>
-			<div><Login/></div>
-			<div><SignUp/></div>
 		</>
 	);
 }

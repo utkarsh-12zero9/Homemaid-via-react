@@ -4,11 +4,10 @@ function Login() {
         <div className="relative flex items-center justify-center h-screen bg-gray-200">
             <button onClick={() => window.location.href = '/'}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full
-         shadow-lg hover:bg-[#00246B] hover:text-white focus:outline-none border-2"
+         shadow-lg hover:bg-[#00246B] hover:text-white cursor-pointer focus:outline-none border-2"
             >
                 <span className="text-2xl font-medium">&times;</span>
             </button>
-
 
             <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-96 mt-10">
                 <h1 className="text-4xl text-[#00246B] font-bold text-center mb-4">Login</h1>
@@ -59,7 +58,7 @@ function Login() {
                     <hr className="my-4 border-gray-400" />
                     <div className="mt-4 ml-8">
                         <p className="text-center mr-7 text-gray-800 mb-2">Or login with</p>
-                        <div className="flex gap-4 items-center">
+                        <div className="flex gap-5 items-center">
                             <button
                                 className="flex items-center px-3 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
                                 onClick={() => console.log('Login with Google')}
