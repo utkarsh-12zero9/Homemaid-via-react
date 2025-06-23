@@ -12,12 +12,14 @@ import dishWashing from "./assets/images/dishwashing.jpg";
 import grocery from "./assets/images/grocery.jpg";
 import Services from "./Components/pages/Services";
 import Login from "./Components/pages/Login";
+import SignUp from "./Components/SignUp";
 
 
 function App() {
 	const aboutRef = useRef(null);
 	const servicesRef = useRef(null);
 	const loginRef = useRef(null);
+	const signUpRef = useRef(null);
 
 	const services = [
 		{ id: 1, title: "Cooking", image: cooking },
@@ -46,6 +48,12 @@ function App() {
 		}
 	};
 
+	const scrollToSignUp = () => {
+		if (signUpRef.current) {
+			signUpRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
 	return (
 		<>
 			<div className="fixed top-0 left-0 w-full z-50">
@@ -66,11 +74,12 @@ function App() {
 						</>
 					} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<SignUp />} />
 				</Routes>
 
 			</div>
-			<div ref={loginRef}><Login/></div>
-			<div><SignUp/></div>
+			{/* <div ref={loginRef}><Login/></div>
+			<div><SignUp/></div> */}
 		</>
 	);
 }

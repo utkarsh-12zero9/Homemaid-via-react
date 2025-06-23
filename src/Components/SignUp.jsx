@@ -1,13 +1,19 @@
 import React from 'react';
-import { useRef } from 'react';
 
 function SignUp() {
-
-
     return (
     <>
-        <div className='h-screen bg-gray-200 flex justify-center items-center'>
-            <div className='top-4 w-105 rounded-xl mt-13 shadow-lg bg-white'>
+        <div className='h-screen bg-gray-200 flex justify-center items-center relative'>
+            {/* Button to navigate back to the home page */}
+            <button 
+                onClick={() => window.location.href = '/'}
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full
+                    shadow-lg bg-white hover:bg-[#00246B] hover:text-white focus:outline-none border-2 border-gray-400"
+            >
+                <span className="text-2xl font-medium">&times;</span>
+            </button>
+
+            <div className='w-105 rounded-xl -mt-10 shadow-lg bg-white'>
                 <h1 className='font-bold text-3xl mt-5 text-center text-[#00246B]'>Sign Up</h1>
                 <form className='p-8 -mt-2'>
                     <div className='mb-2 text-sm text-gray-800'>
@@ -59,27 +65,23 @@ function SignUp() {
                         <div className="flex flex-col gap-4 justify-center flex-cols items-center">
                             <button
                             className="flex items-center px-3 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                            // onClick={() => console.log('Login with Google')}
                             >
                             <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Icon" className="w-7 h-7 mr-2" />
                             SignUp with Google
                             </button>
                             <button
                             className="flex items-center px-4 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                            // onClick={() => console.log('Login with Facebook')}
                             >
                             <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Icon" className="w-7 h-7 mr-2" />
                             SignUp with Facebook
                             </button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </>
-    
   )
 }
 
-export default SignUp
+export default SignUp;

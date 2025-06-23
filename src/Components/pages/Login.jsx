@@ -10,7 +10,7 @@ function Login() {
             </button>
 
 
-            <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-96 mt-10">
+            <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-96 -mt-10">
                 <h1 className="text-4xl text-[#00246B] font-bold text-center mb-4">Login</h1>
                 <form>
                     <div className="mb-2">
