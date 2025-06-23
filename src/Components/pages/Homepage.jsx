@@ -21,11 +21,9 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex gap-4 sm:gap-8 mt-6 sm:mt-10 ml-2 sm:ml-10">
-<<<<<<< HEAD:src/Components/Homepage.jsx
-                        <Button  onClick={scrollToLogin} content="Login" />
-=======
+
                         <Button content="Login" onClick={() => navigate("/login")} />
->>>>>>> fdfeca52927ecf7863358e7c7e9c62b7826e8ab0:src/Components/pages/Homepage.jsx
+
                         <Button content="Sign Up"/>
                     </div>
                 </div>
