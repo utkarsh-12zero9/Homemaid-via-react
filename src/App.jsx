@@ -12,13 +12,16 @@ import dishWashing from "./assets/images/dishwashing.jpg";
 import grocery from "./assets/images/grocery.jpg";
 import Services from "./Components/pages/Services";
 import Login from "./Components/pages/Login";
+
 import SignUp from "./Components/pages/SignUp";
+
 
 
 function App() {
 	const aboutRef = useRef(null);
 	const servicesRef = useRef(null);
 	const loginRef = useRef(null);
+	const signUpRef = useRef(null);
 
 	const services = [
 		{ id: 1, title: "Cooking", image: cooking },
@@ -38,6 +41,12 @@ function App() {
 	const scrollToServices = () => {
 		if (servicesRef.current) {
 			servicesRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
+	const scrollToLogin = () => {
+		if (loginRef.current) {
+		  loginRef.current.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the Login component
 		}
 	};
 
@@ -65,6 +74,8 @@ function App() {
 				</Routes>
 
 			</div>
+			<div><Login/></div>
+			<div><SignUp/></div>
 		</>
 	);
 }
