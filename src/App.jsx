@@ -1,16 +1,18 @@
 import { useRef } from "react";
-import About from "./Components/About";
-import Navbar from "./Components/Navbar";
-import HomePage from "./Components/Homepage";
-import Login from "./Components/Login";
-import cooking from "./assets/cooking.jpg";
-import sweeping from "./assets/sweeping.jpg";
-import laundry from "./assets/laundry.jpg";
-import dusting from "./assets/dusting.jpg";
-import dishWashing from "./assets/dishwashing.jpg";
-import grocery from "./assets/grocery.jpg";
-import Services from "./Components/Services";
-import SignUp from "./Components/SignUp";
+
+import { Routes, Route } from "react-router-dom";
+import About from "./Components/pages/About";
+import Navbar from "./Components/layout/Navbar";
+import HomePage from "./Components/pages/Homepage";
+import cooking from "./assets/images/cooking.jpg";
+import sweeping from "./assets/images/sweeping.jpg";
+import laundry from "./assets/images/laundry.jpg";
+import dusting from "./assets/images/dusting.jpg";
+import dishWashing from "./assets/images/dishwashing.jpg";
+import grocery from "./assets/images/grocery.jpg";
+import Services from "./Components/pages/Services";
+import Login from "./Components/pages/Login";
+
 
 function App() {
 	const aboutRef = useRef(null);
@@ -50,6 +52,7 @@ function App() {
 				<Navbar onAboutClick={scrollToAbout} onServicesClick={scrollToServices} />
 			</div>
 			<div className="pt-16 bg-white text-black min-h-screen">
+<<<<<<< HEAD
 				<HomePage scrollToLogin={scrollToLogin}/>
 				<div ref={aboutRef}>
 					<About />
@@ -58,6 +61,22 @@ function App() {
 				<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
 					<Services services={services} />
 				</div>
+=======
+				<Routes>
+					<Route path="/" element={
+						<>
+							<HomePage />
+							<div ref={aboutRef}>
+								<About />
+							</div>
+							<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
+								<Services services={services} />
+							</div>
+						</>
+					} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
+>>>>>>> fdfeca52927ecf7863358e7c7e9c62b7826e8ab0
 			</div>
 			<div ref={loginRef}><Login/></div>
 			<div><SignUp/></div>

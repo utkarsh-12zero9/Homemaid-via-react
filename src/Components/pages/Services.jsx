@@ -10,8 +10,8 @@ function Services(props) {
 					We offer a wide range of services to meet your needs.
 				</p>
 				<div className='flex w-[80%] flex-wrap justify-center gap-15 mx-auto mt-10'>
-					{props.services.map((service, index) => (
-						<div key={service.id} className='Card bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-64 w-68 hover:scale-105 transition-transform duration-300 ease-in-out'>
+					{props.services.map((service) => (
+						<div key={service.id} className='Card bg-white rounded-lg  overflow-hidden flex flex-col h-64 w-68 shadow-md hover:scale-105 transition-transform duration-300 ease-in-out'>
 							<div className='h-[70%] w-full'>
 								<img
 									src={service.image}
@@ -19,13 +19,12 @@ function Services(props) {
 									className='object-cover w-full h-full'
 								/>
 							</div>
-							<div className='h-[30%] px-3 bg-opacity-50 bg-[#00246B] flex items-center justify-center'>
+							<div className='h-[30%] px-3 bg-opacity-50 bg-[#00246B] flex flex-col items-center justify-center gap-3'>
 								<span className='text-xl font-semibold text-white'>{service.title}</span>
 							</div>
 						</div>
 					))
-
-					}
+				}
 				</div>
 			</div>
 

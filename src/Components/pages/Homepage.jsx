@@ -1,7 +1,10 @@
-import Button from "./Button";
-// import Login from "./Login";
 
-const HomePage = ({ scrollToLogin }) => {
+import { useNavigate } from "react-router-dom";
+import Button from "../ui/Button";
+
+const HomePage = () => {
+    const navigate = useNavigate();
+
 
     return (
         <>
@@ -18,14 +21,18 @@ const HomePage = ({ scrollToLogin }) => {
                     </p>
 
                     <div className="flex gap-4 sm:gap-8 mt-6 sm:mt-10 ml-2 sm:ml-10">
+<<<<<<< HEAD:src/Components/Homepage.jsx
                         <Button  onClick={scrollToLogin} content="Login" />
+=======
+                        <Button content="Login" onClick={() => navigate("/login")} />
+>>>>>>> fdfeca52927ecf7863358e7c7e9c62b7826e8ab0:src/Components/pages/Homepage.jsx
                         <Button content="Sign Up"/>
                     </div>
                 </div>
 
                 <div className="rightSide w-full lg:w-1/2 flex justify-center items-center mt-10 lg:mt-0">
                     <img
-                        src="output.png"
+                        src="../src/assets/icons/FrontMaid.png"
                         alt="Maid_Depiction"
                         className="w-4/5 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl h-auto object-contain"
                     />
