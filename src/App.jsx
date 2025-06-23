@@ -2,6 +2,7 @@ import { useRef } from "react";
 import About from "./Components/About";
 import Navbar from "./Components/Navbar";
 import HomePage from "./Components/Homepage";
+import Login from "./Components/Login";
 import cooking from "./assets/cooking.jpg";
 import sweeping from "./assets/sweeping.jpg";
 import laundry from "./assets/laundry.jpg";
@@ -9,10 +10,12 @@ import dusting from "./assets/dusting.jpg";
 import dishWashing from "./assets/dishwashing.jpg";
 import grocery from "./assets/grocery.jpg";
 import Services from "./Components/Services";
+import SignUp from "./Components/SignUp";
 
 function App() {
 	const aboutRef = useRef(null);
 	const servicesRef = useRef(null);
+	const loginRef = useRef(null);
 
 	const services = [
 		{ id: 1, title: "Cooking", image: cooking },
@@ -35,13 +38,19 @@ function App() {
 		}
 	};
 
+	const scrollToLogin = () => {
+		if (loginRef.current) {
+		  loginRef.current.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the Login component
+		}
+	};
+
 	return (
 		<>
 			<div className="fixed top-0 left-0 w-full z-50">
 				<Navbar onAboutClick={scrollToAbout} onServicesClick={scrollToServices} />
 			</div>
 			<div className="pt-16 bg-white text-black min-h-screen">
-				<HomePage />
+				<HomePage scrollToLogin={scrollToLogin}/>
 				<div ref={aboutRef}>
 					<About />
 				</div>
@@ -50,6 +59,8 @@ function App() {
 					<Services services={services} />
 				</div>
 			</div>
+			<div ref={loginRef}><Login/></div>
+			<div><SignUp/></div>
 		</>
 	);
 }

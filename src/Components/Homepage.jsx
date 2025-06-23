@@ -1,6 +1,8 @@
 import Button from "./Button";
+// import Login from "./Login";
 
-const HomePage = () => {
+const HomePage = ({ scrollToLogin }) => {
+
     return (
         <>
             <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen px-4 py-10 sm:px-8 lg:px-20 lg:py-20">
@@ -16,7 +18,7 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex gap-4 sm:gap-8 mt-6 sm:mt-10 ml-2 sm:ml-10">
-                        <Button content="Login" />
+                        <Button  onClick={scrollToLogin} content="Login" />
                         <Button content="Sign Up"/>
                     </div>
                 </div>
