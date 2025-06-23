@@ -24,7 +24,7 @@ const HomePage = () => {
 
                         <Button content="Login" onClick={() => navigate("/login")} />
 
-                        <Button content="Sign Up" onClick={() => navigate("/signup")}/>
+                        <Button content="Sign Up" onClick={ () => navigate("/signup") }/>
                     </div>
                 </div>
 

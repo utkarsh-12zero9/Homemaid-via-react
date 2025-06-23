@@ -12,7 +12,9 @@ import dishWashing from "./assets/images/dishwashing.jpg";
 import grocery from "./assets/images/grocery.jpg";
 import Services from "./Components/pages/Services";
 import Login from "./Components/pages/Login";
-import SignUp from "./Components/SignUp";
+
+import SignUp from "./Components/pages/SignUp";
+
 
 
 function App() {
@@ -78,8 +80,8 @@ function App() {
 				</Routes>
 
 			</div>
-			{/* <div ref={loginRef}><Login/></div>
-			<div><SignUp/></div> */}
+			<div><Login/></div>
+			<div><SignUp/></div>
 		</>
 	);
 }
