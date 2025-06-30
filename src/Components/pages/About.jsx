@@ -1,44 +1,98 @@
-function About() {
-	return (
-		<>
-			<div className="mx-auto min-h-screen mt-16 max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8 dark:text-white">
-				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00246B] mb-6 sm:mb-8 mt-10 sm:mt-20 ml-2 sm:ml-7">
-					About
-				</h1>
+import { Link } from 'react-router-dom';
+import maidsGroup from '../../assets/images/Maids_Group_2.png';
 
-				<p className="w-full sm:w-[90%] md:w-[83%] text-base sm:text-lg md:text-xl text-black leading-7 md:leading-9 flex font-semibold mb-6 sm:mb-10 ml-2 sm:ml-7">
-					At HomeMaid, we believe your home deserves the best care and that
-					starts with the right help. <br />
-					Founded with a vision to simplify domestic hiring, HomeMaid connects
-					families with reliable, verified, and professional maids for all types
-					of home cleaning and household tasks. Whether you need daily cleaning,
-					deep sanitization, cooking assistance, or full-time support, we make
-					finding the perfect helper simple and secure. <br />
-					Our mission is to empower homes by making maid hiring easy,
-					transparent, and trustworthy. All from the comfort of your screen.{" "}
-				</p>
-				<section className="ml-2 sm:ml-7 text-sm sm:text-md text-black leading-5 font-semibold mb-8 sm:mb-10">
-					<p>✅ Why Choose HomeMaid?</p>
-					<br />
-					<p>🔒 Background Verified Maids </p>
-					<br />
-					<p>🕒 Flexible Hiring Options (Full-time, Part-time, Live-in) </p>
-					<br />
-					<p>🧽 Trained & Experienced Staff </p>
-					<br />
-					<p>💬 Quick Support & Easy Replacement </p>
-					<br />
-					<p>📱 100% Online Booking Process </p>
-					<br />
-					<br />
-				</section>
-				<p className="w-full sm:w-[90%] md:w-[85%] ml-2 sm:ml-7 text-lg sm:text-xl md:text-2xl text-black leading-5 mb-8 sm:mb-10 flex font-semibold ">
-					Let HomeMaid take the hassle out of housework — so you can focus on
-					what matters most.{" "}
-				</p>
-			</div>
-		</>
-	);
+// About component: Enhanced with intro, mission timeline, and detailed team
+function About() {
+  return (
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Section */}
+        <div className="text-center mb-12 ">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#00246B] font-poppins mb-6">
+            About HomeMaid
+          </h1>
+          <img
+            src={maidsGroup}
+            alt="HomeMaid Team"
+            className=" h-94 object-cover mx-auto rounded-lg mb-8"
+          />
+          <p className="text-lg sm:text-xl font-poppins text-gray-600">
+            HomeMaid is your go-to platform for reliable home services, connecting you with vetted maids, cooks, and more. Founded in 2025, we simplify life with trusted professionals across India. Offering daily support, culinary expertise, and transportation, our user-friendly platform ensures convenience and quality. Embrace a stress-free home with HomeMaid’s dependable services!
+          </p>
+        </div>
+
+        {/* Mission Section with Timeline */}
+        <div className="bg-white p-6 rounded-lg shadow-md mb-12">
+          <h2 className="text-2xl font-bold text-[#00246B] font-poppins mb-4">
+            Our Mission
+          </h2>
+          <p className="text-gray-600 font-poppins mb-4">
+            At HomeMaid, we’re committed to delivering exceptional home services with a focus on quality, affordability, and customer satisfaction. Our journey includes:
+          </p>
+          <ul className="list-disc list-inside text-gray-600 font-poppins space-y-2">
+            <li>2025: Launched with 50 vetted providers in Ghaziabad.</li>
+            <li>2026: Expand to 5 cities with 200+ professionals.</li>
+            <li>2027: Aiming for nationwide coverage and 500+ providers.</li>
+          </ul>
+        </div>
+
+        {/* Team Section */}
+        <div>
+          <h2 className="text-2xl font-bold text-[#00246B] font-poppins text-center mb-6">
+            Meet Our Team
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <img
+                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+                alt="Shreya Jain"
+                className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+              />
+              <h3 className="text-lg font-bold text-[#00246B] font-poppins mb-2">
+                Shreya Jain
+              </h3>
+              <p className="text-gray-600 font-poppins">Co-founder</p>
+              <p className="text-gray-500 font-poppins text-sm">10+ years in service industry</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <img
+                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+                alt="Utkarsh Kumar Singh"
+                className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+              />
+              <h3 className="text-lg font-bold text-[#00246B] font-poppins mb-2">
+                Utkarsh Kumar Singh
+              </h3>
+              <p className="text-gray-600 font-poppins">Co-founder & CEO</p>
+              <p className="text-gray-500 font-poppins text-sm">10+ years in logistics</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <img
+                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+                alt="Ujjawal Tyagi"
+                className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+              />
+              <h3 className="text-lg font-bold text-[#00246B] font-poppins mb-2">
+                Ujjawal Tyagi
+              </h3>
+              <p className="text-gray-600 font-poppins">Customer Support Lead</p>
+              <p className="text-gray-500 font-poppins text-sm">5 years in customer care</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <Link
+            to="/services"
+            className="inline-block bg-[#10B981] text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-green-500 hover:bg-opacity-90 transition-all hover:scale-105"
+          >
+            Explore Our Services
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default About;

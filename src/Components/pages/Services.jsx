@@ -1,35 +1,52 @@
-function Services(props) {
+import { services, providers } from "../../services/api.js";
+import ServiceCard from "../ui/ServiceCard.jsx";
+import { useState } from "react";
 
-	return (
-		<>
-			<div className='pb-10'>
-				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00246B] mb-6 sm:mb-8 mt-10 sm:mt-20 ml-5 sm:ml-40">
-					Services
-				</h1>
-				<p className="w-full sm:w-[90%] md:w-[83%] text-base sm:text-lg md:text-xl text-black leading-6 md:leading-9 flex font-semibold mb-6 sm:mb-10 ml-5 sm:ml-40"> 
-					We offer a wide range of services to meet your needs.
-				</p>
-				<div className='flex w-[80%] flex-wrap justify-center gap-15 mx-auto mt-10'>
-					{props.services.map((service) => (
-						<div key={service.id} className='Card bg-white rounded-lg  overflow-hidden flex flex-col h-64 w-68 shadow-md hover:scale-105 transition-transform duration-300 ease-in-out'>
-							<div className='h-[70%] w-full'>
-								<img
-									src={service.image}
-									alt={service.title}
-									className='object-cover w-full h-full'
-								/>
-							</div>
-							<div className='h-[30%] px-3 bg-opacity-50 bg-[#00246B] flex flex-col items-center justify-center gap-3'>
-								<span className='text-xl font-semibold text-white'>{service.title}</span>
-							</div>
-						</div>
-					))
-				}
-				</div>
-			</div>
+// Services component: Display services with search bar to filter by name
+function Services() {
+  const [searchTerm, setSearchTerm] = useState("");
 
-		</>
-	);
+  // Filter services based on title or provider role
+  const filteredServices = services.filter((service) =>
+    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    providers.some((provider) =>
+      provider.role.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      provider.role === service.title
+    )
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-100 py-12">
+      <h2 className="text-3xl sm:text-4xl font-bold text-[#00246B] font-poppins text-center mb-10">
+        Our Services
+      </h2>
+      {/* Search Bar */}
+      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mb-6">
+        <div className="flex items-center w-full sm:w-1/2 mx-auto gap-1">
+          <input
+            type="text"
+            placeholder="Search for your service..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 ring-[#10B981] font-poppins text-sm sm:text-base"
+          />
+          <button
+            onClick={() => setSearchTerm("")}
+            className="bg-[#10B981] text-white px-4 py-2.5 rounded-md hover:bg-emerald-500 transition-colors font-poppins text-sm sm:text-base"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          {filteredServices.map((service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Services;
