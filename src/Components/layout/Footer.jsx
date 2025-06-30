@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-// Footer component: Links, contact info, and social icons
 function Footer() {
     return (
         <footer className="bg-[#00246B] text-white py-8 px-4 sm:px-6 lg:px-8">

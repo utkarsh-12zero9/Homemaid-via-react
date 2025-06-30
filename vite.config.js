@@ -6,6 +6,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    chunkSizeWarningLimit: 1000, // set to 1000kb instead of 500
+    chunkSizeWarningLimit: 1000, // set to 1000kb instead of 500kb
   }
 });

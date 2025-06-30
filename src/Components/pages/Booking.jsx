@@ -16,7 +16,7 @@ function Booking() {
     phone: "",
     service: "",
     date: "",
-    location: [20.5937, 78.9629], // India center
+    location: [20.5937, 78.9629], 
     provider: "",
     status: "pending",
   });

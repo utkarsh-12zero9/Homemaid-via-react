@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
-// Contact component: Contact form with EmailJS integration using provided credentials
 function Contact() {
     const [formData, setFormData] = useState({
         name: '',
@@ -12,13 +11,11 @@ function Contact() {
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
-    // Handle input change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Validate form
     const validate = () => {
         const newErrors = {};
         if (!formData.name) newErrors.name = 'Name is required';
@@ -28,7 +25,6 @@ function Contact() {
         return newErrors;
     };
 
-    // Handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const validationErrors = validate();
@@ -51,7 +47,7 @@ function Contact() {
                         alert('Message sent successfully!');
                         setFormData({ name: '', mobile: '', message: '' });
                         setErrors({});
-                        navigate('/'); // Redirect to homepage
+                        navigate('/');
                     },
                     (error) => {
                         console.log('EmailJS error:', error.text);
