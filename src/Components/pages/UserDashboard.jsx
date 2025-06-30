@@ -73,7 +73,7 @@ function UserDashboard() {
         setProvider(null);
         setUserType(null);
         localStorage.removeItem('user');
-        navigate('/login');
+        navigate('/');
     };
 
     const today = new Date();
