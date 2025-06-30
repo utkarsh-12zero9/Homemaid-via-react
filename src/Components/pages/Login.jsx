@@ -33,13 +33,13 @@ function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-xl">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
                 <div className="flex justify-center">
-                    <img src={logo} alt="HomeMaid Logo" className="h-16 w-auto rounded-md shadow-md shadow-[#00246B]" />
+                    <img src={logo} alt="HomeMaid Logo" className="h-20 w-auto rounded-lg shadow-md shadow-teal-200 " />
                 </div>
                 <div>
-                    <h2 className="text-4xl font-bold text-[#00246B] font-poppins text-center tracking-tight">
+                    <h2 className="text-4xl font-extrabold text-teal-800 font-poppins text-center tracking-tight ">
                         Welcome Back
                     </h2>
                     <p className="mt-2 text-center text-gray-600 font-poppins">
@@ -48,7 +48,7 @@ function Login() {
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleLogin}>
                     <div>
-                        <label htmlFor="phone" className="block text-sm font-poppins text-gray-700 font-medium">
+                        <label htmlFor="phone" className="block text-sm font-semibold text-teal-800 font-poppins">
                             Mobile Number
                         </label>
                         <input
@@ -58,12 +58,12 @@ function Login() {
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="Enter mobile number"
                             autoComplete="username"
-                            className="w-full p-3 border border-gray-300 rounded-lg font-poppins mt-1 focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 hover:border-[#10B981]"
+                            className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block text-sm font-poppins text-gray-700 font-medium">
+                        <label htmlFor="password" className="block text-sm font-semibold text-teal-800 font-poppins">
                             Password
                         </label>
                         <input
@@ -73,19 +73,19 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter password"
                             autoComplete="current-password"
-                            className="w-full p-3 border border-gray-300 rounded-lg font-poppins mt-1 focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 hover:border-[#10B981]"
+                            className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300"
                             required
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#10B981] text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-green-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
                     >
                         Log In
                     </button>
                     <p className="text-center text-sm text-gray-600 font-poppins">
                         Don’t have an account?{' '}
-                        <Link to="/signup" className="text-[#10B981] hover:text-green-600 font-medium underline">
+                        <Link to="/signup" className="text-teal-600 hover:text-teal-800 font-medium underline transition-colors">
                             Sign Up
                         </Link>
                     </p>

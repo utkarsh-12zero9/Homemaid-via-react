@@ -103,7 +103,7 @@ function Booking() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
+    <div className="min-h-screen g-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#00246B] font-poppins mb-4">

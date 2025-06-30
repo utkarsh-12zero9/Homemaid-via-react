@@ -86,7 +86,7 @@ function UserDashboard() {
         <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="User Dashboard">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-12 header-animation relative">
-                    <p className="text-2xl font-extrabold font-poppins text-teal-800 header-animation animate-pulse">
+                    <p className="text-2xl font-extrabold font-poppins text-teal-800 header-animation">
                         Welcome, {user?.name || "User"}!
                     </p>
                     <button
