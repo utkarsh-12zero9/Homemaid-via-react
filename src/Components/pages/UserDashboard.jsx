@@ -25,10 +25,10 @@ function UserDashboard() {
         }
 
         gsap.from(".header-animation", { scale: 0, opacity: 0, duration: 1, ease: "power2.out", stagger: 0.2 });
-        gsap.from(".profile-card", { scale: 0, opacity: 0, duration: 1.2, ease: "back.out(1.7)" });
-        gsap.from(".booking-item", { scale: 0, opacity: 0, duration: 1, ease: "back.out(1.7)", stagger: 0.3 });
-        gsap.from(".notification-item", { scale: 0, opacity: 0, duration: 1, ease: "power2.out", stagger: 0.2 });
-        gsap.from(".logout-button", { scale: 0, opacity: 0, duration: 1.2, ease: "bounce.out" });
+        gsap.from(".profile-card", { scale: 0.9, opacity: 0, duration: 1.2, ease: "elastic.out(1, 0.5)" });
+        gsap.from(".booking-item", { scale: 0.9, opacity: 0, duration: 1, ease: "back.out(1.7)", stagger: 0.3 });
+        gsap.from(".notification-item", { scale: 0.9, opacity: 0, duration: 1, ease: "power2.out", stagger: 0.2 });
+        gsap.from(".logout-button", { scale: 0.9, opacity: 0, duration: 1.2, ease: "bounce.out" });
     }, [isLoggedIn, navigate]);
 
     const handleSave = () => {
@@ -73,7 +73,7 @@ function UserDashboard() {
         setProvider(null);
         setUserType(null);
         localStorage.removeItem('user');
-        navigate('/');
+        navigate('/login');
     };
 
     const today = new Date();
@@ -83,15 +83,15 @@ function UserDashboard() {
     const defaultPhoto = userProfilePhoto;
 
     return (
-        <div className="min-h-screen bg-blue-200 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="User Dashboard">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="User Dashboard">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-12 header-animation relative">
-                    <p className="text-xl font-black font-poppins text-gray-700 header-animation">
+                    <p className="text-2xl font-extrabold font-poppins text-teal-800 header-animation animate-pulse">
                         Welcome, {user?.name || "User"}!
                     </p>
                     <button
                         onClick={handleLogout}
-                        className="bg-[#1f3e7b] text-white font-poppins text-base font-semibold px-5 py-2 rounded-lg shadow hover:bg-[#00246B] transition-all logout-button cursor-pointer"
+                        className="bg-teal-600 text-white font-poppins text-base font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-teal-700 transition-all duration-300 logout-button cursor-pointer transform hover:scale-105"
                         aria-label="Logout"
                     >
                         Logout
@@ -99,19 +99,19 @@ function UserDashboard() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 profile-card">
-                        <h2 className="text-xl font-semibold text-[#00246B] font-poppins mb-4" id="profile-heading">
+                    <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 profile-card border border-teal-100">
+                        <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="profile-heading">
                             Profile
                         </h2>
                         <div className="flex flex-col items-center space-y-4">
-                            <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
+                            <div className="w-32 h-32 bg-teal-100 rounded-full overflow-hidden border-2 border-teal-200">
                                 <img
                                     src={editedUser.photo || defaultPhoto}
                                     alt="Profile"
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <label htmlFor="photo-upload" className="cursor-pointer text-[#10B981] hover:text-green-600 font-poppins">
+                            <label htmlFor="photo-upload" className="cursor-pointer text-teal-600 hover:text-teal-800 font-poppins transition-colors">
                                 Upload Photo
                             </label>
                             <input
@@ -126,7 +126,7 @@ function UserDashboard() {
                                 type="text"
                                 value={editedUser.name || profileData?.name || ""}
                                 onChange={(e) => setEditedUser({ ...editedUser, name: e.target.value })}
-                                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all"
+                                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                                 placeholder="Name"
                                 aria-label="Name"
                             />
@@ -134,13 +134,13 @@ function UserDashboard() {
                                 type="email"
                                 value={editedUser.email || profileData?.email || ""}
                                 onChange={(e) => setEditedUser({ ...editedUser, email: e.target.value })}
-                                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all"
+                                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                                 placeholder="Email"
                                 aria-label="Email"
                             />
                             <button
                                 onClick={handleSave}
-                                className="w-full bg-[#1f3e7b] text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-[#00246B] transition-all shadow-md hover:shadow-lg cursor-pointer"
+                                className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
                                 aria-label="Save profile changes"
                             >
                                 Save Changes
@@ -148,13 +148,13 @@ function UserDashboard() {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-                        <h2 className="text-xl font-semibold text-[#00246B] font-poppins mb-4" id="bookings-heading">
+                    <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 overflow-hidden border border-teal-100">
+                        <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="bookings-heading">
                             Booking History
                         </h2>
                         <ul className="space-y-4">
                             {bookings.length === 0 ? (
-                                <p className="text-gray-700 font-poppins">No bookings yet.</p>
+                                <p className="text-gray-600 font-poppins">No bookings yet.</p>
                             ) : (
                                 bookings
                                     .filter((booking) => {
@@ -165,7 +165,7 @@ function UserDashboard() {
                                     .map((booking) => (
                                         <li
                                             key={booking.id}
-                                            className="text-gray-700 font-poppins p-4 bg-gray-50 rounded-lg flex justify-between items-center booking-item"
+                                            className="text-gray-700 font-poppins p-4 bg-teal-50 rounded-xl flex justify-between items-center booking-item border border-teal-100"
                                         >
                                             <span>
                                                 {booking.service} by {booking.provider || "Unknown"} on {booking.date}
@@ -195,13 +195,13 @@ function UserDashboard() {
                         </ul>
                         <div className="flex justify-between mt-4">
                             <p className="text-sm text-gray-600 font-poppins">
-                                <Link to="/history" className="text-[#10B981] hover:text-green-600 font-medium underline">
+                                <Link to="/history" className="text-teal-600 hover:text-teal-800 font-medium underline transition-colors">
                                     View Past Bookings
                                 </Link>
                             </p>
                             <button
                                 onClick={() => navigate('/booking')}
-                                className="bg-[#1f3e7b] text-white font-poppins text-base font-semibold px-5 py-2 rounded-lg shadow hover:bg-[#00246B] transition-all cursor-pointer"
+                                className="bg-teal-600 text-white font-poppins text-base font-semibold px-5 py-2 rounded-full shadow hover:bg-teal-700 transition-all cursor-pointer transform hover:scale-105"
                                 aria-label="New Booking"
                             >
                                 New Booking
@@ -209,13 +209,13 @@ function UserDashboard() {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                        <h2 className="text-xl font-semibold text-[#00246B] font-poppins mb-4" id="notifications-heading">
+                    <div className="lg:col-span-3 bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
+                        <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="notifications-heading">
                             Notifications 🔔
                         </h2>
                         <ul className="space-y-3">
                             {notifications.map((notif, index) => (
-                                <li key={index} className="text-gray-700 font-poppins p-3 bg-gray-50 rounded-lg notification-item">
+                                <li key={index} className="text-gray-700 font-poppins p-3 bg-teal-50 rounded-xl notification-item border border-teal-100">
                                     {notif}
                                 </li>
                             ))}
