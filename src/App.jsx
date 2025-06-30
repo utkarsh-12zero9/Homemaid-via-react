@@ -1,72 +1,39 @@
-import { useRef } from "react";
+import Navbar from './Components/layout/Navbar';
+import Footer from './Components/layout/Footer';
+import AppRoutes from './Components/routes/AppRoutes';
+import { createContext, useState, useEffect } from 'react';
 
-import { Routes, Route } from "react-router-dom";
-import About from "./Components/pages/About";
-import Navbar from "./Components/layout/Navbar";
-import HomePage from "./Components/pages/Homepage";
-import cooking from "./assets/images/cooking.jpg";
-import sweeping from "./assets/images/sweeping.jpg";
-import laundry from "./assets/images/laundry.jpg";
-import dusting from "./assets/images/dusting.jpg";
-import dishWashing from "./assets/images/dishwashing.jpg";
-import grocery from "./assets/images/grocery.jpg";
-import Services from "./Components/pages/Services";
-import Login from "./Components/pages/Login";
-import SignUp from "./Components/pages/SignUp";
-
-
+export const LoginContext = createContext();
 
 function App() {
-	const aboutRef = useRef(null);
-	const servicesRef = useRef(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
+    const [provider, setProvider] = useState(null);
+    const [bookings, setBookings] = useState([]);
+    const [userType, setUserType] = useState(null);
 
-	const services = [
-		{ id: 1, title: "Cooking", image: cooking },
-		{ id: 2, title: "Sweeping and Mopping", image: sweeping },
-		{ id: 3, title: "Laundry", image: laundry },
-		{ id: 4, title: "Grocery Shopping", image: grocery },
-		{ id: 5, title: "Dusting", image: dusting },
-		{ id: 6, title: "Dish Washing", image: dishWashing }
-	]
+    useEffect(() => {
+        // Only load from localStorage on initial mount
+        const savedUser = localStorage.getItem('user');
+        const savedProvider = localStorage.getItem('provider');
+        if (savedUser && !isLoggedIn) {
+            setUser(JSON.parse(savedUser));
+            setIsLoggedIn(true);
+            setUserType("user");
+        } else if (savedProvider && !isLoggedIn) {
+            setProvider(JSON.parse(savedProvider));
+            setIsLoggedIn(true);
+            setUserType("provider");
+        }
+    }, []); // Empty dependency array to run only on mount
 
-	const scrollToAbout = () => {
-		if (aboutRef.current) {
-			aboutRef.current.scrollIntoView({ behavior: "smooth" });
-		}
-	};
-
-	const scrollToServices = () => {
-		if (servicesRef.current) {
-			servicesRef.current.scrollIntoView({ behavior: "smooth" });
-		}
-	};
-
-	return (
-		<>
-			<div className="fixed top-0 left-0 w-full z-50">
-				<Navbar onAboutClick={scrollToAbout} onServicesClick={scrollToServices} />
-			</div>
-			<div className="pt-16 bg-white text-black min-h-screen">
-
-				<Routes>
-					<Route path="/" element={
-						<>
-							<HomePage />
-							<div ref={aboutRef}>
-								<About />
-							</div>
-							<div ref={servicesRef} className="pt-20 bg-white min-h-screen">
-								<Services services={services} />
-							</div>
-						</>
-					} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/signup" element={<SignUp />} />
-				</Routes>
-
-			</div>
-		</>
-	);
+    return (
+        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, bookings, setBookings, userType, setUserType, provider, setProvider }}>
+            <Navbar />
+            <AppRoutes />
+            <Footer />
+        </LoginContext.Provider>
+    );
 }
 
 export default App;
