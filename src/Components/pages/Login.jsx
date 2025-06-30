@@ -1,84 +1,97 @@
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/icons/Icon_homemaid.png';
+import { LoginContext } from '../../App';
+
 function Login() {
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const { setIsLoggedIn, setUser, setProvider, setUserType } = useContext(LoginContext);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (phone === '9876543210' && password === 'user123') {
+            setIsLoggedIn(true);
+            setUser({ name: "Shreya Jain", phone: "9876543210" });
+            setProvider(null);
+            setUserType("user");
+            localStorage.setItem('user', JSON.stringify({ name: "Shreya Jain", phone: "9876543210" }));
+            navigate('/user-dashboard');
+        } else if (phone === '0123456789' && password === 'provider123') {
+            setIsLoggedIn(true);
+            setProvider({ name: "Ravi Kumar", phone: "0123456789" });
+            setUser(null);
+            setUserType("provider");
+            localStorage.setItem('provider', JSON.stringify({ name: "Ravi Kumar", phone: "0123456789" }));
+            navigate('/provider-dashboard');
+        } else {
+            alert('Wrong ID/Password! Use 9876543210/user123 or 0123456789/provider123.');
+        }
+        setPhone('');
+        setPassword('');
+    };
 
     return (
-        <div className="relative flex items-center justify-center h-screen bg-gray-200">
-            <button onClick={() => window.location.href = '/'}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full
-         shadow-lg hover:bg-[#00246B] hover:text-white cursor-pointer focus:outline-none border-2"
-            >
-                <span className="text-2xl font-medium">&times;</span>
-            </button>
-
-            <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-96 -mt-10">
-                <h1 className="text-4xl text-[#00246B] font-bold text-center mb-4">Login</h1>
-                <form>
-                    <div className="mb-2">
-                        <label htmlFor="email" className="block text-md font-medium text-gray-800">
-                            Email ID:
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-xl">
+                <div className="flex justify-center">
+                    <img src={logo} alt="HomeMaid Logo" className="h-16 w-auto rounded-md shadow-md shadow-[#00246B]" />
+                </div>
+                <div>
+                    <h2 className="text-4xl font-bold text-[#00246B] font-poppins text-center tracking-tight">
+                        Welcome Back
+                    </h2>
+                    <p className="mt-2 text-center text-gray-600 font-poppins">
+                        Please log in to your account
+                    </p>
+                </div>
+                <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+                    <div>
+                        <label htmlFor="phone" className="block text-sm font-poppins text-gray-700 font-medium">
+                            Mobile Number
                         </label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            className="w-full px-4 py-2 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
+                            id="phone"
+                            type="text"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            placeholder="Enter mobile number"
+                            autoComplete="username"
+                            className="w-full p-3 border border-gray-300 rounded-lg font-poppins mt-1 focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 hover:border-[#10B981]"
                             required
                         />
                     </div>
-
-                    <div className="mb-5">
-                        <label htmlFor="password" className="block text-md font-medium text-gray-800">
-                            Password:
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-poppins text-gray-700 font-medium">
+                            Password
                         </label>
                         <input
-                            type="password"
                             id="password"
-                            name="password"
-                            className="w-full px-4 py-2 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter password"
+                            autoComplete="current-password"
+                            className="w-full p-3 border border-gray-300 rounded-lg font-poppins mt-1 focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 hover:border-[#10B981]"
                             required
                         />
-                    </div>
-                    <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                id="remember"
-                                name="remember"
-                                className="w-4 h-4 text-[#00246B] border-gray-300 rounded focus:ring-[#00246B]"
-                            />
-                            <label htmlFor="remember" className="ml-2 text-sm text-gray-800">Remember me</label>
-                        </div>
-                        <a className="text-sm text-[#00246B] hover:underline cursor-pointer">Forgot Password?</a>
                     </div>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 text-lg font-bold text-white bg-[#00246B] rounded-lg hover:bg-[#001a4d] hover:scale-105 focus:outline-none focus:ring-1 focus:ring-[#00246B]"
+                        className="w-full bg-[#10B981] text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-green-600 transition-all duration-200 shadow-md hover:shadow-lg"
                     >
-                        Login
+                        Log In
                     </button>
-                    <hr className="my-4 border-gray-400" />
-                    <div className="mt-4 ml-8">
-                        <p className="text-center mr-7 text-gray-800 mb-2">Or login with</p>
-                        <div className="flex gap-5 items-center">
-                            <button
-                                className="flex items-center px-3 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                                onClick={() => console.log('Login with Google')}
-                            >
-                                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Icon" className="w-7 h-7 mr-2" />
-                                Google
-                            </button>
-                            <button
-                                className="flex items-center px-4 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                                onClick={() => console.log('Login with Facebook')}
-                            >
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Icon" className="w-7 h-7 mr-2" />
-                                Facebook
-                            </button>
-                        </div>
-                    </div>
+                    <p className="text-center text-sm text-gray-600 font-poppins">
+                        Don’t have an account?{' '}
+                        <Link to="/signup" className="text-[#10B981] hover:text-green-600 font-medium underline">
+                            Sign Up
+                        </Link>
+                    </p>
                 </form>
             </div>
         </div>
-
     );
 }
 

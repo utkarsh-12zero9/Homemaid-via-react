@@ -1,114 +1,142 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
+// SignUp component: Mobile number-based registration with validation, no animations
 function SignUp() {
-    const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-    return (
-        <>
-            <div className='h-screen bg-gray-200 flex justify-center items-center relative'>
-                <button
-                    onClick={() => navigate("/")}
-                    className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full shadow-lg hover:bg-[#00246B] hover:text-white focus:outline-none border-2 cursor-pointer"
-                >
-                    <span className="text-2xl font-medium">&times;</span>
-                </button>
-                <div className='w-[420px] rounded-xl shadow-lg bg-white'>
-                    <h1 className='font-bold text-3xl mt-5 text-center text-[#00246B]'>Sign Up</h1>
-                    <form className='p-8'>
-                        <div className='flex gap-5'>
-                            <div className='mb-2 text-sm text-gray-800 w-1/2'>
-                                <label htmlFor="firstName">First Name:</label>
-                                <input
-                                    type="text"
-                                    id='firstName'
-                                    name='firstName'
-                                    className="w-full px-3 py-1 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
-                                    required
-                                />
-                            </div>
-                            <div className='mb-2 text-sm text-gray-800 w-1/2'>
-                                <label htmlFor="lastName">Last Name:</label>
-                                <input
-                                    type="text"
-                                    id='lastName'
-                                    name='lastName'
-                                    className="w-full px-3 py-1 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className='mb-2 text-sm text-gray-800'>
-                            <label htmlFor="email">Email ID:</label>
-                            <input
-                                type="email"
-                                id='email'
-                                name='email'
-                                className="w-full px-3 py-1 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
-                                required
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-800">
-                                Password:
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="w-full px-3 py-0.5 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
-                                required
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-800">
-                                Confirm Password:
-                            </label>
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                className="w-full px-3 py-0.5 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]"
-                                required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="phone" className='block text-sm font-medium text-gray-800'>Phone:</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                className='w-full px-3 py-0.5 mt-1 text-gray-800 bg-white bg-opacity-50 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00246B]'
-                                required
-                            />
-                        </div>
-                        <div className='flex justify-center'>
-                            <button type='submit' className='bg-[#00246B] text-white px-6 py-2 -mb-2 rounded-lg hover:bg-[#001a4d] hover:scale-105'>Sign Up</button>
-                        </div>
-                        <hr className="my-5 mt-4 border-gray-700" />
-                        <div className="mt-2 ml-5 mr-5">
-                            <p className="text-center font-bold text-gray-800 mb-1">Or Sign Up</p>
-                            <div className="flex gap-5 justify-center items-center">
-                                <button
-                                    type="button"
-                                    className="flex items-center px-3 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                                >
-                                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Icon" className="w-7 h-7 mr-2" />
-                                    Google
-                                </button>
-                                <button
-                                    type="button"
-                                    className="flex items-center px-4 py-2 border rounded-lg bg-white text-black hover:bg-gray-200 focus:outline-none"
-                                >
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Icon" className="w-7 h-7 mr-2" />
-                                    Facebook
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </>
-    )
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Validate form
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = 'Name is required';
+    if (!formData.mobile) newErrors.mobile = 'Mobile number is required';
+    else if (!/^\d{10}$/.test(formData.mobile)) newErrors.mobile = 'Mobile number must be 10 digits';
+    if (!formData.password) newErrors.password = 'Password is required';
+    else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = 'Passwords do not match';
+    return newErrors;
+  };
+
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      console.log('SignUp data:', {
+        name: formData.name,
+        mobile: formData.mobile,
+        password: formData.password,
+      });
+      alert('Sign Up successful! (Mock submission)');
+      setFormData({ name: '', mobile: '', password: '', confirmPassword: '' });
+      setErrors({});
+      navigate('/login'); // Redirect to login
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12">
+      <div className="bg-white rounded-lg shadow-md max-w-md w-full p-6 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#00246B] font-poppins text-center mb-6">
+          Sign Up
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-poppins text-gray-700 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1 font-poppins">{errors.name}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-gray-700 mb-1">
+              Mobile Number
+            </label>
+            <input
+              type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleChange}
+              placeholder="Enter your mobile number"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+            />
+            {errors.mobile && (
+              <p className="text-red-500 text-xs mt-1 font-poppins">{errors.mobile}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-xs mt-1 font-poppins">{errors.password}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-gray-700 mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-xs mt-1 font-poppins">{errors.confirmPassword}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-[#00246B] text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-green-500 hover:bg-opacity-90 transition-all hover:scale-105 cursor-pointer"
+          >
+            Sign Up
+          </button>
+        </form>
+        <p className="text-sm text-gray-600 font-poppins text-center mt-4">
+          Already have an account?{' '}
+          <Link to="/login" className="text-green-500 cursor-pointer hover:underline">
+            Login
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default SignUp;
