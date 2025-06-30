@@ -1,166 +1,166 @@
-import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { LoginContext } from '../../App';
+import logo from '../../assets/icons/Logo_HomeMaid.png';
 
-function Navbar({ onAboutClick, onServicesClick }) {
-	const [menuOpen, setMenuOpen] = useState(false);
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, userType } = useContext(LoginContext);
+  const navigate = useNavigate();
 
-	return (
-		<>
-			<header className="bg-[#00246B]">
-				<div className="mx-auto max-w-screen-xl pr-4">
-					<div className="flex h-16 items-center justify-between">
-						<div className="flex-1 md:gap-12 flex items-center">
-							<img
-								src="../src/assets/icons/Logo_Homemaid.png"
-								className="h-15 w-60"
-								alt="homeMaid"
-							/>
-						</div>
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserType(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('provider');
+    navigate('/');
+  };
 
-						{/* Hamburger menu for mobile */}
-						<div className="md:hidden flex items-center">
-							<button
-								onClick={() => setMenuOpen(!menuOpen)}
-								className="text-white focus:outline-none"
-								aria-label="Toggle menu"
-							>
-								<svg
-									className="w-8 h-8"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									{menuOpen ? (
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M6 18L18 6M6 6l12 12"
-										/>
-									) : (
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M4 6h16M4 12h16M4 18h16"
-										/>
-									)}
-								</svg>
-							</button>
-						</div>
+  const goToProfile = () => {
+    if (userType === "user") {
+      navigate('/user-dashboard');
+    } else if (userType === "provider") {
+      navigate('/provider-dashboard');
+    }
+  };
 
-						<div className="md:flex md:items-center md:gap-12 text-gray-900 dark:text-white">
-							<nav aria-label="Global" className="hidden md:block">
-								<ul className="flex items-center gap-6 text-sm">
-									<li>
-										<a
-											className="text-white transition hover:text-white/75 hover:font-bold"
-											href="#"
-										>
-											Home
-										</a>
-									</li>
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setIsOpen(false);
+    }
+  }, [isLoggedIn]);
 
-									<li>
-										<a
-											className="text-white transition hover:text-white/75 hover:font-bold"
-											href="#"
-											onClick={(e) => {
-												e.preventDefault();
-												if (onAboutClick) onAboutClick();
-											}}
-										>
-											About
-										</a>
-									</li>
-
-									<li>
-										<a
-											className="text-white transition hover:text-white/75 hover:font-bold"
-											href="#"
-											onClick={(e) => {
-												e.preventDefault();
-												if (onServicesClick) onServicesClick();
-											}}
-										>
-											Services
-										</a>
-									</li>
-
-									<li>
-										<a
-											className="text-white transition hover:text-white/75 hover:font-bold"
-											href="#"
-										>
-											Contact Us
-										</a>
-									</li>
-									<li>
-										
-									</li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-
-					{/* Mobile menu */}
-					{menuOpen && (
-						<nav className="md:hidden bg-[#00246B]">
-							<ul className="flex flex-col items-start gap-4 p-4 text-white text-base">
-								<li>
-									<a
-										className="block w-full transition hover:text-white/75 hover:font-bold"
-										href="#"
-										onClick={() => setMenuOpen(false)}
-									>
-										Home
-									</a>
-								</li>
-
-								<li>
-									<a
-										className="block w-full transition hover:text-white/75 hover:font-bold"
-										href="#"
-										onClick={(e) => {
-											e.preventDefault();
-											setMenuOpen(false);
-											if (onAboutClick) onAboutClick();
-										}}
-									>
-										About
-									</a>
-								</li>
-
-								<li>
-									<a
-										className="block w-full transition hover:text-white/75 hover:font-bold"
-										href="#"
-										onClick={(e) => {
-											e.preventDefault();
-											setMenuOpen(false);
-											if (onServicesClick) onServicesClick();
-										}}
-									>
-										Services
-									</a>
-								</li>
-
-								<li>
-									<a
-										className="block w-full transition hover:text-white/75 hover:font-bold"
-										href="#"
-										onClick={() => setMenuOpen(false)}
-									>
-										Contact Us
-									</a>
-								</li>
-							</ul>
-						</nav>
-					)}
-				</div>
-			</header>
-		</>
-	);
+  return (
+    <nav className="bg-[#00246B] text-white h-20 px-4">
+      <div className="max-w-7xl mx-auto h-full flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold font-poppins leading-none">
+          <img src={logo} alt="HomeMaid Logo" className="h-14 w-auto rounded-lg" />
+        </Link>
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white focus:outline-none p-1"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="hidden md:flex items-center space-x-6">
+          <Link
+            to="/"
+            className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+          >
+            About
+          </Link>
+          <Link
+            to="/services"
+            className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+          >
+            Services
+          </Link>
+          <Link
+            to="/providers"
+            className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+          >
+            Providers
+          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={goToProfile}
+              className="font-poppins text-white bg-[#10B981] px-4 py-2 rounded-md text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+            >
+              Profile
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="font-poppins text-white bg-[#10B981] px-4 py-2 rounded-md text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="font-poppins text-white bg-[#10B981] px-4 py-2 rounded-md text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
+        </div>
+        {isOpen && (
+          <div className="md:hidden absolute top-20 left-0 w-full bg-[#00246B] shadow-md z-10">
+            <div className="flex flex-col space-y-4 p-4">
+              <Link
+                to="/"
+                className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                to="/services"
+                className="font-poppins text-base leading-none hover:text-[#10B981] transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
+              {isLoggedIn ? (
+                <button
+                  onClick={goToProfile}
+                  className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                >
+                  Profile
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
