@@ -17,7 +17,7 @@ function UserDashboard() {
 
     useEffect(() => {
         if (!isLoggedIn) {
-            navigate('/login');
+            navigate('/');
         }
         const savedUser = localStorage.getItem("user");
         if (savedUser) {
@@ -73,7 +73,6 @@ function UserDashboard() {
         setProvider(null);
         setUserType(null);
         localStorage.removeItem('user');
-        navigate('/');
     };
 
     const today = new Date();
@@ -111,7 +110,7 @@ function UserDashboard() {
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <label htmlFor="photo-upload" className="cursor-pointer text-teal-600 hover:text-teal-800 font-poppins transition-colors">
+                            <label htmlFor="photo-upload" className="cursor-pointer text-teal-600 hover:text-teal-800 font-poppins transition-colors px-3 py-2 rounded-lg bg-teal-50 hover:bg-teal-100 shadow-md text-sm font-semibold">
                                 Upload Photo
                             </label>
                             <input
@@ -204,7 +203,7 @@ function UserDashboard() {
                                 className="bg-teal-600 text-white font-poppins text-base font-semibold px-5 py-2 rounded-full shadow hover:bg-teal-700 transition-all cursor-pointer transform hover:scale-105"
                                 aria-label="New Booking"
                             >
-                                New Booking
+                                +
                             </button>
                         </div>
                     </div>

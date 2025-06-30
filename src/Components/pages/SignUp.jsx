@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-// SignUp component: Mobile number-based registration with validation, no animations
 function SignUp() {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,13 +11,11 @@ function SignUp() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Validate form
   const validate = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Name is required';
@@ -31,7 +28,6 @@ function SignUp() {
     return newErrors;
   };
 
-  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -46,19 +42,19 @@ function SignUp() {
       alert('Sign Up successful! (Mock submission)');
       setFormData({ name: '', mobile: '', password: '', confirmPassword: '' });
       setErrors({});
-      navigate('/login'); // Redirect to login
+      navigate('/login');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12">
-      <div className="bg-white rounded-lg shadow-md max-w-md w-full p-6 sm:p-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#00246B] font-poppins text-center mb-6">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl max-w-md w-full p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-teal-800 font-poppins text-center tracking-tight">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6 mt-8">
           <div>
-            <label className="block text-sm font-poppins text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">
               Name
             </label>
             <input
@@ -67,14 +63,14 @@ function SignUp() {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+              className="w-full p-3 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300 font-poppins text-sm"
             />
             {errors.name && (
               <p className="text-red-500 text-xs mt-1 font-poppins">{errors.name}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-poppins text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">
               Mobile Number
             </label>
             <input
@@ -83,14 +79,14 @@ function SignUp() {
               value={formData.mobile}
               onChange={handleChange}
               placeholder="Enter your mobile number"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+              className="w-full p-3 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300 font-poppins text-sm"
             />
             {errors.mobile && (
               <p className="text-red-500 text-xs mt-1 font-poppins">{errors.mobile}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-poppins text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">
               Password
             </label>
             <input
@@ -99,14 +95,14 @@ function SignUp() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+              className="w-full p-3 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300 font-poppins text-sm"
             />
             {errors.password && (
               <p className="text-red-500 text-xs mt-1 font-poppins">{errors.password}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-poppins text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">
               Confirm Password
             </label>
             <input
@@ -115,7 +111,7 @@ function SignUp() {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm your password"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 font-poppins text-sm"
+              className="w-full p-3 rounded-lg border border-teal-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300 font-poppins text-sm"
             />
             {errors.confirmPassword && (
               <p className="text-red-500 text-xs mt-1 font-poppins">{errors.confirmPassword}</p>
@@ -123,14 +119,14 @@ function SignUp() {
           </div>
           <button
             type="submit"
-            className="w-full bg-[#00246B] text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-green-500 hover:bg-opacity-90 transition-all hover:scale-105 cursor-pointer"
+            className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
           >
             Sign Up
           </button>
         </form>
         <p className="text-sm text-gray-600 font-poppins text-center mt-4">
           Already have an account?{' '}
-          <Link to="/login" className="text-green-500 cursor-pointer hover:underline">
+          <Link to="/login" className="text-teal-600 hover:text-teal-800 font-medium underline transition-colors">
             Login
           </Link>
         </p>

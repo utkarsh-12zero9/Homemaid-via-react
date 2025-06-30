@@ -5,16 +5,8 @@ import logo from '../../assets/icons/Logo_HomeMaid.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoggedIn, setIsLoggedIn, userType } = useContext(LoginContext);
+  const { isLoggedIn, userType } = useContext(LoginContext);
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserType(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('provider');
-    navigate('/');
-  };
 
   const goToProfile = () => {
     if (userType === "user") {
@@ -85,7 +77,7 @@ function Navbar() {
           {isLoggedIn ? (
             <button
               onClick={goToProfile}
-              className="font-poppins text-white bg-[#10B981] px-4 py-2 rounded-md text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+              className="font-poppins text-white bg-[#10B981] px-4 py-2 rounded-md text-base leading-none hover:bg-green-500 hover:text-white transition-all cursor-pointer"
             >
               Profile
             </button>
@@ -133,7 +125,7 @@ function Navbar() {
               {isLoggedIn ? (
                 <button
                   onClick={goToProfile}
-                  className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                  className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base greeni5g-none hover:bg-teal-700 hover:text-white transition-all cursor-pointer"
                 >
                   Profile
                 </button>
@@ -141,14 +133,14 @@ function Navbar() {
                 <>
                   <Link
                     to="/login"
-                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base greeni5g-none hover:bg-teal-700 hover:text-white transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base leading-none hover:bg-green-500 hover:text-white transition-all"
+                    className="font-poppins text-white bg-[#10B981] px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base greeni5g-none hover:bg-teal-700 hover:text-white transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     Sign Up

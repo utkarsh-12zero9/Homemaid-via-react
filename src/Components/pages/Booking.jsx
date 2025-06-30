@@ -100,50 +100,51 @@ function Booking() {
     });
     setMessage("");
     setBooking({ ...booking, service: "", date: "", provider: "" });
+    navigate('/user-dashboard');
   };
 
   return (
-    <div className="min-h-screen g-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#00246B] font-poppins mb-4">
+        <div className="text-center mb-12 header-animation">
+          <h1 className="text-4xl font-extrabold text-teal-800 font-poppins animate-pulse">
             Book a Service
           </h1>
           {message && <p className="text-lg font-poppins text-red-600 mb-4">{message}</p>}
         </div>
 
-        <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Name</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Name</label>
               <input
                 type="text"
                 value={booking.name}
                 onChange={(e) => setBooking({ ...booking, name: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all bg-gray-100"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all bg-gray-100"
                 placeholder="Name"
                 aria-label="Name"
                 readOnly
               />
             </div>
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Phone</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Phone</label>
               <input
                 type="tel"
                 value={booking.phone}
                 onChange={(e) => setBooking({ ...booking, phone: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all bg-gray-100"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all bg-gray-100"
                 placeholder="Phone"
                 aria-label="Phone"
                 readOnly
               />
             </div>
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Service</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Service</label>
               <select
                 value={booking.service}
                 onChange={(e) => setBooking({ ...booking, service: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                 aria-label="Service"
                 required
               >
@@ -154,22 +155,22 @@ function Booking() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Date</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Date</label>
               <input
                 type="date"
                 value={booking.date}
                 onChange={(e) => setBooking({ ...booking, date: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                 aria-label="Date"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Select Provider</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Select Provider</label>
               <select
                 value={booking.provider}
                 onChange={(e) => setBooking({ ...booking, provider: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                 aria-label="Provider"
                 required
               >
@@ -180,7 +181,7 @@ function Booking() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-poppins text-gray-700 mb-2">Location</label>
+              <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Location</label>
               <MapContainer
                 center={booking.location}
                 zoom={5}
@@ -205,20 +206,20 @@ function Booking() {
                 type="text"
                 value={booking.location.join(", ")}
                 readOnly
-                className="w-full p-3 border border-gray-300 rounded-lg font-poppins bg-gray-100 mt-2"
+                className="w-full p-3 border border-teal-200 rounded-lg font-poppins bg-gray-100 mt-2"
                 aria-label="Selected Location"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-[#1f3e7b] text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-[#00246B] transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
               aria-label="Submit booking"
             >
               Book Now
             </button>
             <button
               onClick={() => window.history.back()}
-              className="w-full bg-gray-500 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-gray-600 transition-all shadow-md hover:shadow-lg cursor-pointer mt-4"
+              className="w-full bg-gray-500 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105 mt-4"
               aria-label="Go back to previous page"
             >
               Go Back

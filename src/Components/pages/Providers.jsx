@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { providers } from '../../services/api';
-import Provider from '../ui/Provider';
+import Card from '../ui/Card';
 
-// Providers component: List of service providers with search
 function Providers() {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -13,36 +12,41 @@ function Providers() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Search */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#00246B] font-poppins mb-4">
+        <div className="text-center mb-12 header-animation">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-teal-800 font-poppins ">
             Our Providers
           </h1>
-          <div className="max-w-xl mx-auto">
-            <input
-              type="text"
-              placeholder="Search by name or role..."
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-[#10B981] focus:border-[#10B981] font-poppins"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mb-6">
+            <div className="max-w-xl mx-auto mt-4 flex gap-2" >
+              <input
+                type="text"
+                placeholder="Search by name or role..."
+                className="w-full p-3 border border-teal-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-teal-300 font-poppins text-sm"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button
+                onClick={() => setSearchTerm("")}
+                className="bg-teal-600 text-white px-4 py-2.5 rounded-lg hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 font-poppins text-sm sm:text-base cursor-pointer"
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Providers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProviders.map((provider) => (
-            <Provider key={provider.id} provider={provider} />
+            <Card key={provider.id} provider={provider} />
           ))}
         </div>
 
-        {/* Call to Action */}
         <div className="text-center mt-12">
           <Link
             to="/booking"
-            className="inline-block bg-[#10B981] text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-green-500 hover:bg-opacity-90 transition-all hover:scale-105"
+            className="inline-block bg-teal-600 text-white p-3 rounded-lg font-poppins text-sm sm:text-base hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 border-2 border-teal-500 hover:border-teal-300"
           >
             Book Service
           </Link>
