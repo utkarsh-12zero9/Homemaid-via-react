@@ -2,6 +2,28 @@ import { Link } from 'react-router-dom';
 import maidsGroup from '../../assets/images/Maids_Group.png';
 
 function About() {
+
+  const team = [
+    {
+      name: "Shreya Jain",
+      role: "Co-founder",
+      experience: "10+ years in service industry",
+      image: "https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+    },
+    {
+      name: "Utkarsh Kumar Singh",
+      role: "Co-founder & CEO",
+      experience: "10+ years in logistics",
+      image: "https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+    },
+    {
+      name: "Ujjawal Tyagi",
+      role: "Customer Support Lead",
+      experience: "5 years in customer care",
+      image: "https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -11,7 +33,8 @@ function About() {
           </h1>
           <img
             src={maidsGroup}
-            alt="HomeMaid Team"
+            placeholer="Team HomeMaid"
+            alt="Team HomeMaid"
             className="h-96 object-cover mx-auto rounded-lg mb-8 border-2 border-teal-200"
           />
           <p className="text-lg sm:text-xl font-poppins text-gray-700">
@@ -38,42 +61,27 @@ function About() {
             Meet Our Team
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-teal-100">
-              <img
-                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
-                alt="Shreya Jain"
-                className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-200"
-              />
-              <h3 className="text-lg font-bold text-teal-800 font-poppins mb-2">
-                Shreya Jain
-              </h3>
-              <p className="text-gray-600 font-poppins">Co-founder</p>
-              <p className="text-gray-500 font-poppins text-sm">10+ years in service industry</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-teal-100">
-              <img
-                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
-                alt="Utkarsh Kumar Singh"
-                className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-200"
-              />
-              <h3 className="text-lg font-bold text-teal-800 font-poppins mb-2">
-                Utkarsh Kumar Singh
-              </h3>
-              <p className="text-gray-600 font-poppins">Co-founder & CEO</p>
-              <p className="text-gray-500 font-poppins text-sm">10+ years in logistics</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-teal-100">
-              <img
-                src="https://img.freepik.com/premium-vector/user-icon-icon_1076610-59410.jpg?w=360"
-                alt="Ujjawal Tyagi"
-                className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-200"
-              />
-              <h3 className="text-lg font-bold text-teal-800 font-poppins mb-2">
-                Ujjawal Tyagi
-              </h3>
-              <p className="text-gray-600 font-poppins">Customer Support Lead</p>
-              <p className="text-gray-500 font-poppins text-sm">5 years in customer care</p>
-            </div>
+            {team.map((member, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 min-h-64 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-35 rounded-lg mx-auto mb-4 border-2 border-teal-200"
+                />
+                <h3 className="text-xl font-semibold text-teal-800 font-poppins mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-gray-600 font-poppins mb-1">
+                  {member.role}
+                </p>
+                <p className="text-gray-500 font-poppins">
+                  {member.experience}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
