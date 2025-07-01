@@ -203,7 +203,7 @@ function UserDashboard() {
                                 className="bg-teal-600 text-white font-poppins text-base font-semibold px-5 py-2 rounded-full shadow hover:bg-teal-700 transition-all cursor-pointer transform hover:scale-105"
                                 aria-label="New Booking"
                             >
-                                +
+                                New Booking
                             </button>
                         </div>
                     </div>
