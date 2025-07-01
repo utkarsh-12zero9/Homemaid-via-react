@@ -96,15 +96,19 @@ HomeMaid is a user-friendly platform launched in 2025 to revolutionize home serv
 We welcome contributions to improve HomeMaid! Here's how you can help:
 
 **1. Fork the Repository**
+
 **2. Create a Feature Branch**
         ```bash
         git checkout -b feature/your-feature
+
 **3. Commit Changes**
         ```bash
         git commit -m "Add your feature"
+
 **4. Push to the Branch**
         ```bash
         git push origin feature/your-feature
+
 **5. Open a Pull Request** with a clear description of your changes.
 
 
