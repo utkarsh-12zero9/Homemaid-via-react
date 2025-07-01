@@ -131,7 +131,7 @@ function UserDashboard() {
                             />
                             <input
                                 type="email"
-                                value={editedUser.email || profileData?.email || ""}
+                                value={editedUser.email || "dummy@example.com"}
                                 onChange={(e) => setEditedUser({ ...editedUser, email: e.target.value })}
                                 className="w-full p-3 border border-teal-200 rounded-lg font-poppins focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
                                 placeholder="Email"

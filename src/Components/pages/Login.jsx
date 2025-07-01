@@ -13,10 +13,10 @@ function Login() {
         e.preventDefault();
         if (phone === '9876543210' && password === 'user123') {
             setIsLoggedIn(true);
-            setUser({ name: "Shreya Jain", phone: "9876543210" });
+            setUser({ name: "Dummy User", phone: "9876543210" });
             setProvider(null);
             setUserType("user");
-            localStorage.setItem('user', JSON.stringify({ name: "Shreya Jain", phone: "9876543210" }));
+            localStorage.setItem('user', JSON.stringify({ name: "Dummy User", phone: "9876543210" }));
             navigate('/user-dashboard');
         } else if (phone === '0123456789' && password === 'provider123') {
             setIsLoggedIn(true);
