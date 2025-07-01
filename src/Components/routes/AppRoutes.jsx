@@ -8,9 +8,8 @@ import SignUp from '../pages/SignUp';
 import Contact from '../pages/Contact';
 import Booking from '../pages/Booking';
 import UserDashboard from '../pages/UserDashboard';
-import ProviderDashboard from '../pages/ProviderDasboard';
+import ProviderDashboard from '../pages/ProviderDashboard';
 import History from '../pages/History';
-
 
 const AppRoutes = () => {
     return (

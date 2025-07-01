@@ -1,5 +1,5 @@
 import { services, providers } from "../../services/api.js";
-import ServiceCard from "../ui/ServiceCard.jsx";
+import Card from "../ui/Card.jsx";
 import { useState } from "react";
 
 function Services() {
@@ -38,7 +38,7 @@ function Services() {
       <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {filteredServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <Card key={service.id} item={service} type="service" />
           ))}
         </div>
       </div>
