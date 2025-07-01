@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import { LoginContext } from '../../App';
-import logo from '../../assets/icons/Logo_HomeMaid.png';
+import logo from '../../assets/icons/Logo_Homemaid.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
