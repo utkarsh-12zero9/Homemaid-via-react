@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../App';
 import { gsap } from 'gsap';
+import providerProfilePhoto from "../../assets/images/maleHelper.jpg";
 
 function ProviderDashboard() {
     const [provider, setProvider] = useState({
@@ -90,7 +91,7 @@ function ProviderDashboard() {
                         <div className="flex flex-col items-center space-y-4">
                             <div className="w-32 h-32 bg-teal-100 rounded-full overflow-hidden border-2 border-teal-200">
                                 <img
-                                    src={editedProvider.photo || "https://via.placeholder.com/128"}
+                                    src={editedProvider.photo || providerProfilePhoto}
                                     alt="Profile"
                                     className="w-full h-full object-cover"
                                 />
