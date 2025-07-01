@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/icons/Icon_homemaid.png';
+import logo from '../../assets/icons/Icon_Homemaid.png';
 import { LoginContext } from '../../App';
 
 function Login() {
