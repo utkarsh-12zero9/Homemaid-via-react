@@ -12,14 +12,15 @@ function UserDashboard() {
     const [editedUser, setEditedUser] = useState({ ...user });
     const [notifications, setNotifications] = useState([
         `New booking confirmed for Cooking on ${new Date().toLocaleDateString()}.`,
-        `Payment received for Laundry service.`,
+        `Your Laundry service is scheduled for tomorrow.`,
+        `Reminder: Your Cleaning service is due next week.`,
     ]);
 
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/');
         }
-        const savedUser = localStorage.getItem("user");
+        const savedUser = localStorage.getItem(userType);
         if (savedUser) {
             setEditedUser(JSON.parse(savedUser));
         }
@@ -69,10 +70,10 @@ function UserDashboard() {
     };
 
     const handleLogout = () => {
+        localStorage.removeItem('user');
         setIsLoggedIn(false);
         setProvider(null);
         setUserType(null);
-        localStorage.removeItem('user');
     };
 
     const today = new Date();
