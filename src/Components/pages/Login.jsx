@@ -36,10 +36,10 @@ function Login() {
         <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
                 <div className="flex justify-center">
-                    <img src={logo} alt="HomeMaid Logo" className="h-20 w-auto rounded-lg shadow-md shadow-teal-200 " />
+                    <img src={logo} alt="HomeMaid Logo" className="h-20 w-auto rounded-lg shadow-md shadow-[#00246B]" />
                 </div>
                 <div>
-                    <h2 className="text-4xl font-extrabold text-teal-800 font-poppins text-center tracking-tight ">
+                    <h2 className="text-4xl font-extrabold text-[#00246B] font-poppins text-center tracking-tight ">
                         Welcome Back
                     </h2>
                     <p className="mt-2 text-center text-gray-600 font-poppins">

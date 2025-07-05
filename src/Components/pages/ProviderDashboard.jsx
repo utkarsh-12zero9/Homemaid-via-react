@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../App';
-import { gsap } from 'gsap';
 import providerProfilePhoto from "../../assets/images/maleHelper.jpg";
+import { motion, AnimatePresence } from 'framer-motion';
 
 function ProviderDashboard() {
     const [provider, setProvider] = useState({
@@ -23,7 +23,6 @@ function ProviderDashboard() {
         ],
         total: 1800,
     });
-
     const [feedbacks] = useState([
         { id: 1, feedback: "Great cooking skills!", stars: 4, tip: 200 },
         { id: 2, feedback: "Excellent laundry service!", stars: 5, tip: 300 },
@@ -40,13 +39,6 @@ function ProviderDashboard() {
             setProvider({ ...contextProvider });
             setEditedProvider({ ...contextProvider });
         }
-
-        gsap.from(".header-animation", { scale: 0.9, opacity: 0, duration: 1, ease: "elastic.out(1, 0.5)", stagger: 0.2 });
-        gsap.from(".profile-card", { scale: 0.9, opacity: 0, duration: 1.2, ease: "elastic.out(1, 0.5)" });
-        gsap.from(".booking-item", { scale: 0.9, opacity: 0, duration: 1, ease: "back.out(1.7)", stagger: 0.3 });
-        gsap.from(".earnings-item", { scale: 0.9, opacity: 0, duration: 1, ease: "power2.out", stagger: 0.2 });
-        gsap.from(".feedback-item", { scale: 0.9, opacity: 0, duration: 1, ease: "power2.out", stagger: 0.2 });
-        gsap.from(".logout-button", { scale: 0.9, opacity: 0, duration: 1.2, ease: "bounce.out" });
     }, [contextProvider]);
 
     const handleSave = () => {
@@ -67,24 +59,64 @@ function ProviderDashboard() {
         navigate('/');
     };
 
+    // Animation variants
+    const cardVariants = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+    };
+    const buttonVariants = {
+        hover: { scale: 1.05, boxShadow: '0 8px 32px 0 rgba(16, 185, 129, 0.18)' },
+        tap: { scale: 0.97 }
+    };
+    const headerVariants = {
+        hidden: { opacity: 0, y: -30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+    };
+    const listItemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: { delay: i * 0.08 + 0.2, duration: 0.5, ease: 'easeOut' }
+        })
+    };
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Provider Dashboard">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 via-blue-100 to-teal-200 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Provider Dashboard">
             <div className="max-w-7xl mx-auto">
-                <div className="flex items-center justify-between mb-12 header-animation relative">
-                    <p className="text-2xl font-extrabold font-poppins text-teal-800 header-animation">
+                <motion.div
+                    className="flex items-center justify-between mb-12 header-animation relative"
+                    variants={headerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.p
+                        className="text-2xl font-extrabold font-poppins  text-[#00246B] header-animation"
+                        variants={headerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         Welcome, {provider.name}!
-                    </p>
-                    <button
+                    </motion.p>
+                    <motion.button
                         onClick={handleLogout}
-                        className="bg-teal-600 text-white font-poppins text-base font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-teal-700 transition-all duration-300 logout-button cursor-pointer transform hover:scale-105"
+                        variants={buttonVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                        className="bg-gradient-to-r from-teal-600 via-blue-500 to-teal-400 text-white font-poppins text-base font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-teal-700 transition-all duration-300 logout-button cursor-pointer border-2 border-teal-500 hover:border-teal-300"
                         aria-label="Logout"
                     >
                         Logout
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 profile-card border border-teal-100">
+                    <motion.div
+                        className="bg-white/80 glassmorphism p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 profile-card border border-teal-100 backdrop-blur-md"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="profile-heading">
                             Profile
                         </h2>
@@ -96,7 +128,7 @@ function ProviderDashboard() {
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <label htmlFor="photo-upload" className="cursor-pointer text-teal-600 hover:text-teal-800 font-poppins transition-colors">
+                            <label htmlFor="photo-upload" className="cursor-pointer text-teal-600 hover:text-teal-800 font-poppins transition-colors px-3 py-2 rounded-lg bg-teal-50 hover:bg-teal-100 shadow-md text-sm font-semibold">
                                 Upload Photo
                             </label>
                             <input
@@ -131,58 +163,98 @@ function ProviderDashboard() {
                                 placeholder="Availability (e.g., 9 AM - 5 PM)"
                                 aria-label="Availability"
                             />
-                            <button
+                            <motion.button
                                 onClick={handleSave}
-                                className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
+                                variants={buttonVariants}
+                                whileHover="hover"
+                                whileTap="tap"
+                                className="w-full bg-gradient-to-r from-teal-600 via-blue-500 to-teal-400 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all shadow-md hover:shadow-lg cursor-pointer border-2 border-teal-500 hover:border-teal-300"
                                 aria-label="Save profile changes"
                             >
                                 Save Changes
-                            </button>
+                            </motion.button>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 overflow-hidden border border-teal-100">
+                    <motion.div
+                        className="lg:col-span-2 bg-white/80 glassmorphism p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 overflow-hidden border border-teal-100 backdrop-blur-md min-h-[300px]"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="bookings-heading">
                             Upcoming Bookings
                         </h2>
                         <ul className="space-y-4">
-                            {bookings.length === 0 ? (
-                                <p className="text-gray-600 font-poppins">No bookings yet.</p>
-                            ) : (
-                                bookings.map((booking) => (
-                                    <li
-                                        key={booking.id}
-                                        className="text-gray-700 font-poppins p-4 bg-teal-50 rounded-xl booking-item border border-teal-100"
-                                    >
-                                        {booking.service} for {booking.customer} on {booking.date}
-                                    </li>
-                                ))
-                            )}
+                            <AnimatePresence>
+                                {bookings.length === 0 ? (
+                                    <motion.p
+                                        className="text-gray-600 font-poppins"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                    >No bookings yet.</motion.p>
+                                ) : (
+                                    bookings.map((booking, i) => (
+                                        <motion.li
+                                            key={booking.id}
+                                            className="text-gray-700 font-poppins p-4 bg-teal-50 rounded-xl booking-item border border-teal-100"
+                                            custom={i}
+                                            variants={listItemVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="hidden"
+                                        >
+                                            {booking.service} for {booking.customer} on {booking.date}
+                                        </motion.li>
+                                    ))
+                                )}
+                            </AnimatePresence>
                         </ul>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-3 bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
+                    <motion.div
+                        className="lg:col-span-3 bg-white/80 glassmorphism p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100 backdrop-blur-md min-h-[180px]"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="feedbacks-heading">
                             Customer Feedbacks
                         </h2>
                         <ul className="space-y-3">
-                            {feedbacks.map((feedback) => (
-                                <li key={feedback.id} className="text-gray-700 font-poppins p-3 bg-teal-50 rounded-xl feedback-item border border-teal-100">
-                                    <p>{feedback.feedback}</p>
-                                    <div className="flex items-center space-x-1 mt-2">
-                                        {Array.from({ length: 5 }, (_, i) => (
-                                            <span key={i} className="text-yellow-500">
-                                                {i < feedback.stars ? '★' : '☆'}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <p className="mt-2">Tip: ₹{feedback.tip}</p>
-                                </li>
-                            ))}
+                            <AnimatePresence>
+                                {feedbacks.map((feedback, i) => (
+                                    <motion.li
+                                        key={feedback.id}
+                                        className="text-gray-700 font-poppins p-3 bg-teal-50 rounded-xl feedback-item border border-teal-100"
+                                        custom={i}
+                                        variants={listItemVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="hidden"
+                                    >
+                                        <p>{feedback.feedback}</p>
+                                        <div className="flex items-center space-x-1 mt-2">
+                                            {Array.from({ length: 5 }, (_, i) => (
+                                                <span key={i} className="text-yellow-500">
+                                                    {i < feedback.stars ? '★' : '☆'}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <p className="mt-2">Tip: ₹{feedback.tip}</p>
+                                    </motion.li>
+                                ))}
+                            </AnimatePresence>
                         </ul>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-3 bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
+                    <motion.div
+                        className="lg:col-span-3 bg-white/80 glassmorphism p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100 backdrop-blur-md min-h-[180px]"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         <h2 className="text-xl font-semibold text-teal-800 font-poppins mb-4" id="earnings-heading">
                             Earnings Overview
                         </h2>
@@ -193,13 +265,23 @@ function ProviderDashboard() {
                             Recent Transactions
                         </h3>
                         <ul className="space-y-2">
-                            {earnings.recent.map((transaction) => (
-                                <li key={transaction.id} className="text-gray-700 font-poppins p-3 bg-teal-50 rounded-xl earnings-item border border-teal-100">
-                                    ₹{transaction.amount} for {transaction.service} on {transaction.date}
-                                </li>
-                            ))}
+                            <AnimatePresence>
+                                {earnings.recent.map((transaction, i) => (
+                                    <motion.li
+                                        key={transaction.id}
+                                        className="text-gray-700 font-poppins p-3 bg-teal-50 rounded-xl earnings-item border border-teal-100"
+                                        custom={i}
+                                        variants={listItemVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="hidden"
+                                    >
+                                        ₹{transaction.amount} for {transaction.service} on {transaction.date}
+                                    </motion.li>
+                                ))}
+                            </AnimatePresence>
                         </ul>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>

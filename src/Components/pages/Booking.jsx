@@ -7,6 +7,7 @@ import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import L from 'leaflet';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from 'framer-motion';
 
 function Booking() {
   const { isLoggedIn, user, bookings, setBookings } = useContext(LoginContext);
@@ -103,17 +104,41 @@ function Booking() {
     navigate('/user-dashboard');
   };
 
+  // Animation variants
+  const headerVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+  };
+  const buttonVariants = {
+    hover: { scale: 1.05, boxShadow: '0 8px 32px 0 rgba(16, 185, 129, 0.18)' },
+    tap: { scale: 0.97 }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-blue-100 to-teal-200 py-12 px-4 sm:px-6 lg:px-8" role="main" aria-label="Booking Page">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 header-animation">
-          <h1 className="text-4xl font-extrabold text-teal-800 font-poppins animate-pulse">
+        <motion.div
+          className="text-center mb-12 header-animation"
+          variants={headerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <h1 className="text-4xl font-extrabold font-poppins text-[#00246B] drop-shadow-lg">
             Book a Service
           </h1>
           {message && <p className="text-lg font-poppins text-red-600 mb-4">{message}</p>}
-        </div>
+        </motion.div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100">
+        <motion.div
+          className="bg-white/80 glassmorphism p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-teal-100 backdrop-blur-md"
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-teal-800 font-poppins mb-2">Name</label>
@@ -210,22 +235,29 @@ function Booking() {
                 aria-label="Selected Location"
               />
             </div>
-            <button
+            <motion.button
               type="submit"
-              className="w-full bg-teal-600 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="w-full bg-gradient-to-r from-teal-600 via-blue-500 to-teal-400 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer border-2 border-teal-500 hover:border-teal-300"
               aria-label="Submit booking"
             >
               Book Now
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              type="button"
               onClick={() => window.history.back()}
-              className="w-full bg-gray-500 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer transform hover:scale-105 mt-4"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="w-full bg-gray-500 text-white p-3 rounded-lg font-poppins text-lg font-semibold hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer mt-4 border-2 border-gray-400 hover:border-gray-500"
               aria-label="Go back to previous page"
             >
               Go Back
-            </button>
+            </motion.button>
           </form>
-        </div>
+        </motion.div>
       </div>
       <ToastContainer />
     </div>
